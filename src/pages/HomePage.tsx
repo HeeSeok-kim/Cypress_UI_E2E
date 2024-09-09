@@ -7,7 +7,7 @@ const HomePage = () => {
     <>
       <Header text={'Cypress를 사용한 E2E 테스트'} />
       <LinkContainer>
-        <Link to={'modal-test'}>모달 테스트</Link>
+        <Link to={'modal-test'}>공지 팝업(모달) 테스트</Link>
         <Link to={'window-stub'}>window.replace, Href 테스트</Link>
       </LinkContainer>
     </>
