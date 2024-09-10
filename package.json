@@ -2,15 +2,16 @@
   "name": "cypress-ui-e2e",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
+    "cy:open": "cypress open",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "@emotion/styled": "^11.13.0",
+    "cypress": "^13.14.2",
     "prettier": "^3.3.3",
     "react": "^18.3.1",
     "react-cookie": "^7.2.0",
@@ -22,10 +23,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "eslint": "^9.9.0",
-    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
-    "globals": "^15.9.0",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1"
