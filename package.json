@@ -6,8 +6,8 @@
     "dev": "vite",
     "cy:open": "cypress open",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "e2e": "npm run dev & cy:open"
   },
   "dependencies": {
     "@emotion/styled": "^11.13.0",
@@ -16,7 +16,8 @@
     "react": "^18.3.1",
     "react-cookie": "^7.2.0",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.1"
+    "react-router-dom": "^6.26.1",
+    "wait-on": "^8.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
@@ -24,6 +25,7 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "eslint-plugin-react-refresh": "^0.4.9",
+    "start-server-and-test": "^2.0.7",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1"
