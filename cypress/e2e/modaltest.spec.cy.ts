@@ -11,7 +11,7 @@ describe('모달 테스트',()=>{
 
   })
 
-  it('모달창 확인',()=>{
+  it('모달창 텍스트 확인',()=>{
     const { modal, closeBtn, oneDayCloseBtn} = element
 
     //모달이 존재하는지 확인
@@ -26,7 +26,7 @@ describe('모달 테스트',()=>{
     cy.get(closeBtn).should('be.visible').and('contain','닫기')
   })
 
-  it('닫기 버튼을 누르고 페이지에 다시 접근 했을때 모달이 정상적으로 보여지는지 검증',()=>{
+  it('닫기 버튼 클릭 후 모달이 잘 종료되었는지 확인',()=>{
     const { modal,closeBtn, } = element
 
     //모달이 존재하는지 확인
@@ -37,22 +37,50 @@ describe('모달 테스트',()=>{
 
     //모달 종료 확인
     cy.get(modal).should('not.exist')
-    
-    //새로고침
-    cy.reload()
-    
-    //모달이 다시 보여진다.
+  })
+
+  it('닫기 버튼 클릭 후 페이지에 다시 접근 했을때 모달창이 잘 보이는지 확인',()=>{
+    const { modal,closeBtn, } = element
+
+    //모달이 존재하는지 확인
     cy.get(modal).should('exist')
 
+    //모달 닫기 버튼 클릭
+    cy.get(closeBtn).click()
+
+    //모달 종료 확인
+    cy.get(modal).should('not.exist')
+
+    //페이지 리로드
+    cy.reload()
+
+    //모달이 존재하는지 확인
+    cy.get(modal).should('exist')
   })
 
 
-  it('오늘 하루 열지 않기 클릭 검증 ', () => {
+  it('오늘 하루 열지 않기 버튼 클릭 후 쿠키에 값이 잘 저장되는지 확인', () => {
     const { modal,oneDayCloseBtn, } = element
 
     //모달이 존재하는지 확인
     cy.get(modal).should('exist')
     
+    //오늘 하루 열지 않기 버튼 클릭
+    cy.get(oneDayCloseBtn).click()
+
+    //모달 종료 확인
+    cy.get(modal).should('not.exist')
+
+    //쿠키가 있는지 검증
+    cy.getCookie('hideNoticeModal').should('exist')
+  })
+
+  it('오늘 하루 열지 않기 버튼 클릭 후 페이지에 다시 접근 했을때 모달창이 안보이는지 확인',()=>{
+    const { modal,oneDayCloseBtn, } = element
+
+    //모달이 존재하는지 확인
+    cy.get(modal).should('exist')
+
     //오늘 하루 열지 않기 버튼 클릭
     cy.get(oneDayCloseBtn).click()
 
