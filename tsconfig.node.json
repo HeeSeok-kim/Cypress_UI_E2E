@@ -16,7 +16,9 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": false,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "types": ["cypress"]
   },
-  "include": ["vite.config.ts"]
+  "include": ["vite.config.ts","**/*.ts"],
+  "exclude": ["src/cypress"]
 }

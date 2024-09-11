@@ -27,13 +27,13 @@ const NoticeModal = () => {
 
   return (
     isVisible && (
-      <ModalBackground>
+      <ModalBackground id={'modal'}>
         <ModalContainer>
-          <h2>공지 사항</h2>
+          <p>공지사항</p>
           <p>여기에 공지 내용을 작성하세요.</p>
           <div>
-            <Button onClick={handleDoNotShowToday}>오늘 하루 열지 않기</Button>
-            <Button onClick={handleClose}>닫기</Button>
+            <Button id={'oneDayCloseBtn'} onClick={handleDoNotShowToday}>오늘 하루 열지 않기</Button>
+            <Button id={'closeBtn'} onClick={handleClose}>닫기</Button>
           </div>
         </ModalContainer>
       </ModalBackground>
