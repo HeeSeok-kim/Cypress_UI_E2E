@@ -1,21 +1,18 @@
 import Header from '../components/Header.tsx'
 import styled from '@emotion/styled'
+import React from 'react'
 
 const WindowObjectTest = () => {
-  const windowHref = (url:string) =>{
-
-  }
-
-  const windowReplace = (url:string) => {
-    
+  const windowReplace = (e:React.MouseEvent) => {
+    e.stopPropagation()
+    location.replace('http://play.google.com')
   }
 
   return(
     <>
-      <Header text={'공지 모달 테스트'} />
+      <Header text={'Window Object Stub 테스트'} />
       <Container>
-        <a onClick={()=>windowReplace('http://google.com')}>구글 플레이 스토어 이동하기</a>
-        <a onClick={()=>windowHref('http://google.com')}>애플 스토어 이동하기</a>
+        <a href={'#'} id={'replace_test'} onClick={(e)=>windowReplace(e)}>구글 플레이 스토어 이동하기</a>
       </Container>
     </>
   )
