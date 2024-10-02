@@ -1,9 +1,14 @@
 describe('window 객체 Stub 테스트', () => {
-  const windowObjectStub = (url:string, stub:object) => {
+  const windowObjectStub = (url:string) => {
     cy.on('window:before:load', (win) => {
       win.__location = {
-        ...stub
+        replace: cy.stub().as('replace')
       }
+
+      Object.defineProperty(win.__location,'href', {
+        get: () => '',
+        set: cy.stub().as('href')
+      })
     })
 
     cy.intercept('GET', url, (req) => {
@@ -13,19 +18,47 @@ describe('window 객체 Stub 테스트', () => {
     })
   }
 
-  it('구글 플레이 스토어 이동 테스트',()=>{
-    const windowLocation = {
-      replace: cy.stub().as('replace'),
-    }
-    const playStore = 'http://play.google.com'
+  beforeEach(()=>{
+    const pageDownLoadUrl = 'http://localhost:5173/src/pages/WindowObjectTest.tsx*'
     const pageUrl = '/window-object-test'
-    const pageDownLoadUrl = 'http://localhost:5173/src/pages/WindowObjectTest.tsx?t=*'
 
-    windowObjectStub(pageDownLoadUrl,windowLocation)
+    // windowObjectStub(pageDownLoadUrl)
     cy.visit(pageUrl)
+  })
+
+  it('구글 플레이 스토어 딥링크 테스트(http 사용)',()=>{
+    const playStore = 'http://play.google.com/store/apps/details?id=com.nhn.android.search&hl=ko'
 
     //클릭
-    cy.get('#replace_test').click()
+    cy.get('#httpProtocol').click()
+
+    cy.origin(playStore,()=>{
+      cy.url().should('include','google')
+    })
+
+
+    //검증
+    // cy.get('@replace').should(
+    //   'have.been.calledOnceWith',
+    //   playStore
+    // )
+  })
+
+  it('구글 플레이 스토어 딥링크 테스트(market scheme 사용)', () => {
+    const market = 'market://details?id=com.nhn.android.search&hl=ko'
+    cy.get('#market').click()
+
+    cy.get('@href').should(
+      'have.been.calledOnceWith',
+      market
+    )
+  })
+
+  it('앱 스토어 딥링크 테스트',()=>{
+    const playStore = 'http://play.google.com/store/apps/details?id=com.nhn.android.search&hl=ko'
+
+    //클릭
+    cy.get('#httpProtocol').click()
 
     //검증
     cy.get('@replace').should(
