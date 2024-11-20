@@ -19,6 +19,7 @@
     "noFallthroughCasesInSwitch": true,
     "types": ["cypress"]
   },
+  "type": [],
   "include": ["vite.config.ts","**/*.ts"],
   "exclude": ["src/cypress"]
 }

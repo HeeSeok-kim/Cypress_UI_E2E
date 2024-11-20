@@ -12,9 +12,13 @@
 // You can read more here:
 // https://on.cypress.io/configuration
 // ***********************************************************
-
-// Import commands.js using ES2015 syntax:
+import {addMatchImageSnapshotCommand} from '@simonsmith/cypress-image-snapshot/command'
 import './commands'
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+addMatchImageSnapshotCommand({
+  failureThreshold: 0.1, // threshold for entire image
+  failureThresholdType: 'pixel', // percent of image or number of pixels
+  customDiffConfig: { threshold: 0.1 }, // threshold for each pixel
+  capture: 'viewport', // capture viewport in screenshot
+  e2eSpecDir: 'cypress/e2e/'
+})
